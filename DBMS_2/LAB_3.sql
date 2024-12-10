@@ -49,9 +49,11 @@ VALUES
 select * from Employee
 select * from Departments
 select * from Projects
---Part – A 
---1. Create Stored Procedure for Employee table As User enters either First Name or Last Name and based 
---on this you must give EmployeeID, DOB, Gender & Hiredate.  
+
+
+
+--Part â€“ A 
+--1. Create Stored Procedure for Employee table As User enters either First Name or Last Name and based on this you must give EmployeeID, DOB, Gender & Hiredate.  
 create or alter procedure pr_Employee_first_last_name
 	@name varchar(100)
 	as
@@ -61,18 +63,16 @@ create or alter procedure pr_Employee_first_last_name
 	end
 exec pr_Employee_first_last_name 'John'
 
---2. Create a Procedure that will accept Department Name and based on that gives employees list who 
---belongs to that department.  
+--2. Create a Procedure that will accept Department Name and based on that gives employees list who belongs to that department.  
 create  procedure pr_departments_employeelist
-@departmentname varchar(100)
+  @departmentname varchar(100)
 	as
 	begin
 		select * from employee join Departments on Employee.DepartmentID=Departments.DepartmentID where Departments.DepartmentName=@departmentname
 	end
 exec pr_departments_employeelist 'admin'
 
---3.  Create a Procedure that accepts Project Name & Department Name and based on that you must give 
---all the project related details. 
+--3.  Create a Procedure that accepts Project Name & Department Name and based on that you must give all the project related details. 
 create procedure pr_projectdepartmentname_projectdetails
 	@projectname varchar(100),
 	@deparmentname varchar(100)
@@ -82,8 +82,7 @@ create procedure pr_projectdepartmentname_projectdetails
 	end
 exec pr_projectdepartmentname_projectdetails 'Project Alpha','IT'
 
---4. Create a procedure that will accepts any integer and if salary is between provided integer, then those 
---employee list comes in output.  
+--4. Create a procedure that will accepts any integer and if salary is between provided integer, then those employee list comes in output.  
 create or alter procedure pr_integer_salarybetween
 	@min int,
 	@max int
@@ -101,9 +100,12 @@ create procedure pr_date_employee_hired
 		select * from Employee where HireDate=@date
 	end
 exec pr_date_employee_hired '2010-06-15'
---Part – B 
---6. Create a Procedure that accepts Gender’s first letter only and based on that employee details will be 
---served.  
+
+
+
+
+--Part â€“ B 
+--6. Create a Procedure that accepts Genderâ€™s first letter only and based on that employee details will be served.  
 create or alter procedure pr_gender_employeedetails
 	@gender varchar(10)
 	as
@@ -111,8 +113,8 @@ create or alter procedure pr_gender_employeedetails
 	select * from employee where gender like @gender+'%'
 	end
 exec pr_gender_employeedetails 'm'
---7. Create a Procedure that accepts First Name or Department Name as input and based on that employee 
---data will come.  
+
+--7. Create a Procedure that accepts First Name or Department Name as input and based on that employee data will come.  
 create or alter procedure pr_first_department_employeedetails
 	@firstname varchar(100)
 	as
@@ -124,8 +126,7 @@ create or alter procedure pr_first_department_employeedetails
 exec pr_first_department_employeedetails 'John'
 exec pr_first_department_employeedetails 'admin'
 
---8. Create a procedure that will accepts location, if user enters a location any characters, then he/she will 
---get all the departments with all data.
+--8. Create a procedure that will accepts location, if user enters a location any characters, then he/she will get all the departments with all data.
 create procedure pr_location_employeedetails
 	@location varchar(10)
 	as
@@ -134,10 +135,12 @@ create procedure pr_location_employeedetails
 		on Employee.DepartmentID=Departments.DepartmentID
 		where Departments.Location like '%'+@location+'%'
 	end
-exec pr_location_employeedetails'a'
---Part – C 
---9. Create a procedure that will accepts From Date & To Date and based on that he/she will retrieve Project 
---related data.
+exec pr_location_employeedetails 'a'
+
+
+
+--Part â€“ C 
+--9. Create a procedure that will accepts From Date & To Date and based on that he/she will retrieve Project related data.
 create procedure pr_fromdate_todate_projectdetails
 	@fromdate date,
 	@todate date
@@ -146,8 +149,8 @@ create procedure pr_fromdate_todate_projectdetails
 		select * from Projects where StartDate=@fromdate and EndDate=@todate
 	end
 exec pr_fromdate_todate_projectdetails '2022-01-01','2022-12-31'
---10. Create a procedure in which user will enter project name & location and based on that you must 
---provide all data with Department Name, Manager Name with Project Name & Starting Ending Dates. 
+
+--10. Create a procedure in which user will enter project name & location and based on that you must provide all data with Department Name, Manager Name with Project Name & Starting Ending Dates. 
 create  or alter procedure pr_projectname_location_detials
 	@projectname varchar(100),
 	@location varchar(100)
